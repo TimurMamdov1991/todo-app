@@ -22,15 +22,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sing-in", h.singIn)
 	}
 
-	api := router.Group("/api")
+	api := router.Group("/api", h.userIdentity)
 	{
 		lists := api.Group("/lists")
 		{
 			lists.POST("/", h.createList)
-			lists.GET("/", h.getAllList)
+			lists.GET("/", h.getAllLists)
 			lists.GET("/:id", h.getListById)
 			lists.PUT("/:id", h.updateList)
-			lists.DELETE("/:id", h.deleteItem)
+			lists.DELETE("/:id", h.deleteList)
 
 			items := lists.Group(":id/items")
 			{

@@ -11,10 +11,10 @@ CREATE TABLE todo_lists (
                             description varchar(255)
 );
 
-CREATE TABLE user_lists (
-                            id SERIAL PRIMARY KEY,
-                            user_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-                            list_id INT REFERENCES todo_lists(id) ON DELETE CASCADE NOT NULL
+CREATE TABLE users_lists (
+                            id      serial                                           not null unique,
+                            user_id int references users (id) on delete cascade      not null,
+                            list_id int references todo_lists (id) on delete cascade not null
 );
 
 CREATE TABLE todo_items (

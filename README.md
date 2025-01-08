@@ -11,3 +11,6 @@
                      3)C помощью scoop установить Migrate: scoop install migrate
 6) запустить команду внутри проекта в CMD: migrate -path ./schema -database "postgres://postgres:qwerty@localhost:60062/postgres?sslmode=disable" up
 7) Если хотите дропнуть бд: migrate -path ./schema -database "postgres://postgres:qwerty@localhost:60062/postgres?sslmode=disable" down
+
+
+команда в имаджес - перейти в бд psql -U postgres

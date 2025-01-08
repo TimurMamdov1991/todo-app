@@ -1,31 +1,37 @@
-CREATE TABLE users (
-                       id SERIAL PRIMARY KEY,
-                       name varchar(255) NOT NULL,
-                       username varchar(255) NOT NULL UNIQUE,
-                       password_hash varchar(255) NOT NULL
+CREATE TABLE users
+(
+    id            serial       not null unique,
+    name          varchar(255) not null,
+    username      varchar(255) not null unique,
+    password_hash varchar(255) not null
 );
 
-CREATE TABLE todo_lists (
-                            id SERIAL PRIMARY KEY,
-                            title varchar(255) NOT NULL,
-                            description varchar(255)
+CREATE TABLE todo_lists
+(
+    id          serial       not null unique,
+    title       varchar(255) not null,
+    description varchar(255)
 );
 
-CREATE TABLE users_lists (
-                            id      serial                                           not null unique,
-                            user_id int references users (id) on delete cascade      not null,
-                            list_id int references todo_lists (id) on delete cascade not null
+CREATE TABLE users_lists
+(
+    id      serial                                           not null unique,
+    user_id int references users (id) on delete cascade      not null,
+    list_id int references todo_lists (id) on delete cascade not null
 );
 
-CREATE TABLE todo_items (
-                            id SERIAL PRIMARY KEY,
-                            title varchar(255) NOT NULL,
-                            description varchar(255),
-                            done BOOLEAN NOT NULL DEFAULT FALSE
+CREATE TABLE todo_items
+(
+    id          serial       not null unique,
+    title       varchar(255) not null,
+    description varchar(255),
+    done        boolean      not null default false
 );
 
-CREATE TABLE lists_items (
-                             id SERIAL PRIMARY KEY,
-                             item_id INT REFERENCES todo_items(id) ON DELETE CASCADE NOT NULL,
-                             list_id INT REFERENCES todo_lists(id) ON DELETE CASCADE NOT NULL
+
+CREATE TABLE lists_items
+(
+    id      serial                                           not null unique,
+    item_id int references todo_items (id) on delete cascade not null,
+    list_id int references todo_lists (id) on delete cascade not null
 );
